@@ -1,6 +1,6 @@
 %Gerador de ordem de serviços
 
-% Definindo que a base de dados é dinâmica
+%Definição para base de dados dinâmica
 :- dynamic ordem_servico/5.
 :- dynamic profissional/5.
 :- dynamic atribuicao/2.
@@ -39,8 +39,7 @@ ultimo_id_profissional(UltimoID) :-
 
   verfica_disponibilidade(X):-
     profissional(_,X,_,_,Y),
-    Y = sim -> true;
-    false.
+    write(Y).
 
 %Regra que verifica se uma competência está na lista de competências 
 
@@ -135,7 +134,7 @@ ultimo_id_profissional(UltimoID) :-
     Situacao = emAndamento -> 
     cadastraOS(ID,Descricao,concluido,DataIni,DataFim),
     retract(ordem_servico(ID,_,emAndamento,_,_)),
-    writeln('Situação da OS alterada com sucesso!');
+    writeln('Situação da OS alterada com sucesso!').
 
   cadastraOS(ID,Descricao,Situacao,DataIni,DataFim):-
     assertz(ordem_servico(ID,Descricao,Situacao,DataIni,DataFim)).
